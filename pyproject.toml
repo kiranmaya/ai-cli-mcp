@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-cli-mcp"
+version = "1.0.0"
+description = "Production Python MCP Server Gateway for OpenAI Codex and Google Antigravity CLIs with YOLO mode support"
+readme = "README.md"
+authors = [
+    { name = "Kiran Maya", email = "kiranmaya@users.noreply.github.com" }
+]
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=2.2.0",
+    "pydantic>=2.10.0",
+    "typing-extensions>=4.12.0",
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "codex",
+    "antigravity",
+    "ai-agents",
+    "claude",
+    "gemini",
+    "cursor",
+    "cli-gateway",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+ai-cli-mcp = "server:main"
+ai_cli_mcp_server = "server:main"
+
+[project.urls]
+Homepage = "https://github.com/kiranmaya/ai-cli-mcp"
+Repository = "https://github.com/kiranmaya/ai-cli-mcp.git"
+Issues = "https://github.com/kiranmaya/ai-cli-mcp/issues"
+
+[tool.setuptools]
+py-modules = ["server", "ai_cli_mcp_server", "config", "process"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cli*", "models*"]
+
+[tool.setuptools.package-data]
+"*" = ["skills/*.md"]
