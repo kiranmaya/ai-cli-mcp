@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ai-cli-gateway": {
+      "command": "python",
+      "args": [
+        "c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py"
+      ]
+    }
+  }
+}

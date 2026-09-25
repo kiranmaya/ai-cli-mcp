@@ -46,7 +46,9 @@ run_server.bat
 
 ## 3. Client Configuration Configurations
 
-### A. Claude Desktop
+### A. Claude (Claude Desktop & Claude Code CLI)
+
+#### 1. Claude Desktop
 Open or create your Claude Desktop configuration file:
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
@@ -69,11 +71,105 @@ Add the server definition:
   }
 }
 ```
-*(If installed via pip package, you can set `"command": "ai-cli-mcp"` and `"args": []`)*
+
+#### 2. Claude Code CLI
+Add to your user settings (`~/.claude.json`):
+```json
+{
+  "mcpServers": {
+    "ai-cli-gateway": {
+      "command": "python",
+      "args": [
+        "c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py"
+      ],
+      "env": {
+        "CLI_YOLO_MODE": "true",
+        "CLI_DEFAULT_TIMEOUT": "300"
+      }
+    }
+  }
+}
+```
 
 ---
 
-### B. Cursor IDE
+### B. OpenAI Codex CLI & Desktop
+
+#### 1. One-Line Command via CLI
+```powershell
+codex mcp add ai-cli-gateway --env CLI_YOLO_MODE=true --env CLI_DEFAULT_TIMEOUT=300 -- python c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py
+```
+
+#### 2. Direct Configuration in `~/.codex/config.toml`
+Add to `~/.codex/config.toml`:
+```toml
+[mcp_servers.ai-cli-gateway]
+command = "python"
+args = ["c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py"]
+
+[mcp_servers.ai-cli-gateway.env]
+CLI_YOLO_MODE = "true"
+CLI_DEFAULT_TIMEOUT = "300"
+```
+
+Verify with:
+```powershell
+codex mcp get ai-cli-gateway
+```
+
+---
+
+### C. Gemini CLI & Google Antigravity
+
+#### 1. Gemini CLI
+Add using the Gemini CLI command:
+```powershell
+gemini mcp add ai-cli-gateway python c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py
+```
+Or add to global `~/.gemini/settings.json`:
+```json
+{
+  "mcpServers": {
+    "ai-cli-gateway": {
+      "command": "python",
+      "args": [
+        "c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py"
+      ],
+      "env": {
+        "CLI_YOLO_MODE": "true",
+        "CLI_DEFAULT_TIMEOUT": "300"
+      }
+    }
+  }
+}
+```
+
+#### 2. Google Antigravity CLI (`agy`) & Antigravity IDE
+Add using `agy mcp add`:
+```powershell
+agy mcp add --env CLI_YOLO_MODE=true --env CLI_DEFAULT_TIMEOUT=300 ai-cli-gateway python c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py
+```
+Or configure in `~/.gemini/config/mcp_config.json`:
+```json
+{
+  "mcpServers": {
+    "ai-cli-gateway": {
+      "command": "python",
+      "args": [
+        "c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py"
+      ],
+      "env": {
+        "CLI_YOLO_MODE": "true",
+        "CLI_DEFAULT_TIMEOUT": "300"
+      }
+    }
+  }
+}
+```
+
+---
+
+### D. Cursor IDE
 In Cursor, open **Settings > Features > MCP** (or edit `.cursor/mcp.json` in your workspace):
 ```json
 {
@@ -93,32 +189,7 @@ In Cursor, open **Settings > Features > MCP** (or edit `.cursor/mcp.json` in you
 
 ---
 
-### C. Google Antigravity IDE & Antigravity CLI (`agy`)
-For the Antigravity CLI or Antigravity IDE:
-
-1. **CLI Integration**:
-Add to `~/.gemini/antigravity-cli/settings.json` or use `agy mcp add`:
-```bash
-agy mcp add ai-cli-gateway python c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py
-```
-
-2. **Workspace / Global `mcp_config.json`**:
-```json
-{
-  "mcpServers": {
-    "ai-cli-gateway": {
-      "command": "python",
-      "args": [
-        "c:/Projects2026/AgentsCLI_MCP_Server/ai_cli_mcp_server.py"
-      ]
-    }
-  }
-}
-```
-
----
-
-### D. Windsurf IDE (Codeium)
+### E. Windsurf IDE (Codeium)
 Edit `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
@@ -138,7 +209,7 @@ Edit `~/.codeium/windsurf/mcp_config.json`:
 
 ---
 
-### E. VS Code (Cline / Roo-Code Extension)
+### F. VS Code (Cline / Roo-Code Extension)
 Open Cline / Roo-Code MCP Settings (`cline_mcp_settings.json`):
 ```json
 {
