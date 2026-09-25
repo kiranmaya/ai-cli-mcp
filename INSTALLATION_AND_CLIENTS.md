@@ -32,6 +32,16 @@ pip install git+https://github.com/kiranmaya/ai-cli-mcp.git
 uvx --from git+https://github.com/kiranmaya/ai-cli-mcp.git ai-cli-mcp
 ```
 
+### Method D: Run via Windows Scripts (Batch / PowerShell)
+No package installation needed. The scripts automatically detect any virtual environment (`.venv`, `venv`, `env`) or system Python 3.10+:
+```cmd
+:: Batch runner
+run_server.bat
+
+:: PowerShell runner
+.\run_server.ps1
+```
+
 ---
 
 ## 3. Client Configuration Configurations

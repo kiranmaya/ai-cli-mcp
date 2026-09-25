@@ -79,14 +79,29 @@ cd ai-cli-mcp
 pip install -e .
 ```
 
-### 2. Verify Host Binaries
+### 2. Verify Host Binaries & CLI Status
 
-Run the server status check directly in Python:
-```bash
+Run the server status check using the provided runner scripts or directly in Python:
+
+```cmd
+:: Using Batch runner
+run_server.bat --status
+
+:: Using PowerShell runner
+.\run_server.ps1 -Status
+
+:: Or directly via Python
 python -c "import asyncio, server; print(asyncio.run(server.cli_status()))"
 ```
 
-### 3. Add to Claude Desktop
+### 3. Running the Server
+
+To launch the MCP Server on stdio transport:
+- **Batch**: `run_server.bat`
+- **PowerShell**: `.\run_server.ps1`
+- **Direct Python**: `python server.py`
+
+### 4. Add to Claude Desktop
 
 Edit `%APPDATA%\Claude\claude_desktop_config.json`:
 ```json
@@ -105,7 +120,7 @@ Edit `%APPDATA%\Claude\claude_desktop_config.json`:
 }
 ```
 
-### 4. Add to Cursor IDE
+### 5. Add to Cursor IDE
 
 In Cursor, add to `.cursor/mcp.json`:
 ```json
